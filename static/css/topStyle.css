@@ -1,0 +1,107 @@
+#logo {
+	height: 40px;
+	width: 50px;
+	margin-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 20px;
+	float: left;
+}
+
+#title {
+	background-color: black;
+	display: inline-block;
+	width: 100%;
+}
+
+.dropbtn {
+	background-color: black;
+	color: white;
+	padding: 16px;
+	font-size: 15px;
+	border: none;
+	cursor: pointer;
+}
+
+.dropdown {
+	position: relative;
+	float: left;
+}
+
+.dropdown-content  {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+	font-size: 14px;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: gray;
+}
+
+#signInButton {
+	color: yellow;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+	float: left;
+}
+
+#kart {
+	color: white;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	position: relative;
+	margin-right: 20px;
+	float: left;
+	position: relative;
+}
+
+.badge.cart {
+	background: #FF4747;
+    max-width: 16px;
+    min-width: 13px;
+    height: 13px;
+    color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    top: -2px;
+    left: 21px;
+    font-size: 10px;
+    line-height: 13px;
+    text-align: center;
+    padding: 0 2px;
+    padding: 0 2px;
+}
+
+
+#cartIcon {
+	height: 30px;
+	width: 30px;
+}
+
+.paypal-container {
+	height: 100vh;
+}
+
+.paypal-button-container {
+	text-align:center!important;
+}
+

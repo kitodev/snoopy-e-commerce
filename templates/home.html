@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='css/home.css') }} />
+    <link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Snoopy</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+{#    <form action="/searchQuery" method="POST" class="form-inline my-2 my-lg-0">#}
+{#      <input id="searchBox" class="form-control mr-sm-2" type="search" name="searchQuery" placeholder="Search" aria-label="Search">#}
+{#      <button id="searchButton" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+{#    </form>#}
+  {% if not loggedIn %}
+    <li class="nav-item">
+
+	<div id="signInButton">
+		<a class="nav-link" href="/loginForm">Sign In</a>
+	</div>
+    </li>
+	{% else %}
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Hello,{{firstName}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+          <a class="dropdown-item" href="/account/orders">Your orders</a>
+          <a class="dropdown-item" href="/account/profile">Your profile</a>
+
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/logout">Sign Out</a>
+        </div>
+      </li>
+    </ul>
+	{% endif %}
+	<div id="kart">
+		<a class="link" href="/cart">
+			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
+            <span class="badge cart badge-secondary badge-pill">{{noOfItems}}</span>
+		</a>
+	</div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 order-md-1 mb-4 mt-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">Shop by Category: </h4>
+                <div class="list-group">
+                     {% for row in categoryData %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                      <a href="/displayCategory?categoryId={{ row[0] }}">{{ row[1] }}</a>
+                      </a>
+                  </li>
+                    {% endfor %}
+                </div>
+        </div>
+
+        <div class="col-md-8 order-md-2 mb-4 mt-4">
+            <h2>Items</h2>
+
+            <div class="row">
+                {% for data in itemData %}
+                    {% for row in data %}
+                <div class="card col-6 col-md-4 col-xl-3 text-center float-left product border-0">
+
+                    <div class="card-body p-0">
+                        <div class="thumbnail">
+                            <a href="/productDescription?productId={{row[0]}}">
+                                <img class="img-fluid" src={{ url_for('static', filename='uploads/' + row[4]) }} id="itemImage" />
+                            </a>
+                        </div>
+                        <div class="caption w-100">
+
+                            <a href="/productDescription?productId={{row[0]}}">
+                                {{row[1]}}
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="body-footer">
+                        $ {{row[2]}}
+                    </div>
+                </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+
